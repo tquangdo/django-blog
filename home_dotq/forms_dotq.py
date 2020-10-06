@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(label='Tài khoản', max_length=30)
-    email = forms.EmailField(label='Email')
+    email = forms.EmailField(label='Email', required=False)
     password1 = forms.CharField(label='Mật khẩu', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Nhập lại mật khẩu',
                                 widget=forms.PasswordInput())

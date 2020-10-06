@@ -32,7 +32,7 @@ class Choice(models.Model):
     vote = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.question, self.choice_text
+        return '{}, {}'.format(self.question, self.choice_text)
 
 
 # class CustomUser(AbstractUser):
