@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email form</title>
+    <style>
+        .contentCName {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{% url 'news:view_email' %}" method="POST">
+        {% csrf_token %}
+        <p>Tiêu đề: {{mailOnEmail.title}}</p>
+        <p>Email: {{mailOnEmail.email}}</p>
+        <p>Nội dung: {{mailOnEmail.content}}</p>
+        <p>CC: {{mailOnEmail.cc}}</p>
+        <input type="submit" value="Gửi">
+    </form>
+</body>
+
+</html>

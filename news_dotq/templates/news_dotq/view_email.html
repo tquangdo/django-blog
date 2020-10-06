@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View email</title>
+    <style>
+        td {
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>Tiêu đề</td>
+            <td>Email</td>
+            <td>Nội dung</td>
+            <td>CC</td>
+        </tr>
+        <tr>
+            <td>{{mailOnProcessView.title}}</td>
+            <td>{{mailOnProcessView.email}}</td>
+            <td>{{mailOnProcessView.content}}</td>
+            <td>{{mailOnProcessView.cc}}</td>
+        </tr>
+    </table>
+</body>
+
+</html>

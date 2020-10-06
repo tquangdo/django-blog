@@ -1,0 +1,80 @@
+A) CÀI
+1/ cài python
+2/ check version
+py --version
+-> 3.8.5
+3/ tạo "project-name"
+py -m venv project-name
+=================== CMD
+4/ activate: mỗi lần mở mới CMD thì phải chạy lại "activate.bat"
+project-name\Scripts\activate.bat
+-> (project-name) F:\DoTQ\DoTQPrivate\src\Python>
+=================== CMD
+5/ cài Django
+py -m pip install Django
+(py -m pip install djangorestframework)
+6/ check version
+django-admin --version
+(py -m pip freeze)
+-> 3.1.1
+(->
+Django==3.1.1
+djangorestframework==3.12.1
+)
+7/ create project
+django-admin startproject XXXProject
+=================== Bash
+...MINGW64 /f/DoTQ/DoTQPrivate/src/Python
+$ ./project-name/Scripts/django-admin startproject XXXProject
+=================== Bash
+
+B) CẤU TRÚC "XXXProject"
+1/ manage.py
+tạo admin acc, DB & server ảo... qua command
+2/ wsgi.py
+deploy project lên server
+
+C) CMD
+1/ python manage.py startapp blog_dotq
+2/ python manage.py makemigrations blog_dotq
+-> tạo file migration "0001_initial.py" có các columns định nghĩa trong "models.py"
+3/ python manage.py migrate
+-> edit file "db.sqlite3" có text "CREATE TABLE blog_dotq_post" (tablename=<startapp>_<classname> định nghĩa trong "models.py": class "Post")
+4/ python manage.py test home_dotq (file "tests.py")
+5/ python manage.py shell
+>>> from blog_dotq.models import Post
+* INS:
+>>> b = Post(title='Secondary Post', body='Hello Django')
+>>> b.save()
+* SEL:
+>>> b.title/body...
+* UPD:
+>>> a = Post.objects.get(id=1)
+>>> a.body = 'Hello Kteam'
+>>> a.save()
+* post = models.ForeignKey(Post,...):
++ TH có related_name:
+>>> b = a.related_name.all() 
++ TH KO có related_name:
+>>> b = a.comment_set.all() 
++ xong rồi thì:
+>>> b[0].body
+6/ python manage.py createsuperuser
+ID/PW:
+1/ trangia61/<pw giống gmail>
+2/ user/user
+
+D) URL:
+1/ localhost:8000/is-login/
+2/ localhost:8000/news-dotq/email/
+-> localhost:8000/news-dotq/viewemail/
+3/ localhost:8000/
+->
+localhost:8000/blog-dotq/
+ ->
+  localhost:8000/blog-dotq/x
+  localhost:8000/blog-dotq/?page=x 
+localhost:8000/contact/
+localhost:8000/logout/
+localhost:8000/login(register)/
+4/ localhost:8000/blog-dotq/add-post/

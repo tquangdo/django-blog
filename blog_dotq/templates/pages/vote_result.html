@@ -1,0 +1,14 @@
+{% extends 'pages/base_dotq.html' %}
+
+{% block tabtitlexxx %}KQ vote{% endblock %}
+
+{% block contentxxx %}
+{% if postOnVote %}
+<h1>{{postOnVote.title}} </h1>
+<p>KQ vote là: </p>
+{% for choice_item in postOnVote.choice_set.all %}
+<p>{{choice_item.choice_text}} : <span style="color: red">{{choice_item.vote}}</span></p>
+{% endfor %}
+<a href="{% url 'blog:post_dotq' postOnVote.id%}">Quay lại để vote</a>
+{% endif %}
+{% endblock %}

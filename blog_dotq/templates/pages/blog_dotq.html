@@ -1,0 +1,24 @@
+{% extends 'pages/base_dotq.html' %}
+<!-- django tự tìm "pages/base_dotq.html" trong all folder "templates" of all startapp -->
+
+{% block tabtitlexxx %}Blog{% endblock %}
+
+{% block contentxxx %}
+{% for post_item in postOnList %}
+<h4>
+    {{post_item.date | date:'d-m-Y'}}
+    <!-- 'post_dotq' là urls.py>name='post_dotq' -->
+    <a href="{% url 'blog:post_dotq' post_item.id %}">{{post_item.title}} </a>
+</h4>
+{% if post_item.image %}
+    <img src="{{post_item.image.url}}" width="500px" height="300px" />
+{% endif %}
+{% endfor %}
+<br /><br /><br />
+<!-- page_obj, request... đều là fix variable name -->
+{% if page_obj.has_next %}
+PAGE: <a href="{{request.path}}?page={{page_obj.next_page_number}}">Bài cũ hơn</a>
+{% elif page_obj.has_previous %}
+PAGE: <a href="{{request.path}}?page={{page_obj.previous_page_number}}">Bài mới hơn</a>
+{% endif %}
+{% endblock %}

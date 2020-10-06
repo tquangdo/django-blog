@@ -1,0 +1,53 @@
+{% extends 'pages/base_dotq.html' %}
+<!-- django tự tìm "pages/base_dotq.html" trong all folder "templates" of all startproject -->
+
+<!-- mỗi khi click 1 post thì auto hiện title là "post's title" -->
+{% block tabtitlexxx %}{{postOnPost.title}} {% endblock %}
+
+{% block contentxxx %}
+<h3>
+    {{postOnPost.title}}
+</h3>
+{% if postOnPost.image %}
+    <img src="{{postOnPost.image.url}}" width="500px" height="300px" />
+{% endif %}
+<h6>on {{postOnPost.date}} </h6>
+{{postOnPost.body|safe|linebreaks}}
+<br />
+~~~~~~~~ Đã bình luận ~~~~~~~~
+<br />
+<!-- commentsFromModel trong "models.py>class Comment" -->
+{% for cmt_item in postOnPost.commentsFromModel.all %}
+<h4><strong>{{cmt_item.author}} </strong> </h4>
+<h6>
+    <p>{{cmt_item.date}} </p>
+</h6>
+<p>{{cmt_item.body|linebreaks}} </p>
+{% endfor %}
+<!-- kiểm tra user có đăng nhập chưa, nếu đăng nhập mới hiển thị form -->
+{% if user.username %}
+<br />
+~~~~~~~~ Vote ~~~~~~~~
+<br />
+<form action="{% url 'blog:vote_dotq' postOnPost.id %}" method="POST">
+    {% csrf_token %}
+    {% for choice_item in postOnPost.choice_set.all %}
+    <p>
+        <input type="radio" value="{{choice_item.id}}" name="choiceName">{{choice_item.choice_text}}
+    </p>
+    {% endfor %}
+    {% if postOnPost.choice_set.all %}
+    <input type="submit" value="Vote">
+    {% endif %}
+</form>
+<br />
+~~~~~~~~ Sắp bình luận ~~~~~~~~
+<br />
+<form action="{% url 'blog:post_dotq' postOnPost.id %}" method="POST">
+    {% csrf_token %}
+    <p><label>Comment: </label> </p>
+    {{formOnPost.body}}
+    <input type="submit" value="Bình luận" />
+</form>
+{% endif %}
+{% endblock %}

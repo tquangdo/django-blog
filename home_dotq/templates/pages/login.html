@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- bắt buộc phải là "form", là fix variable name -->
+        {% for key,value in form.errors.items %}
+        {{value}}
+        {% endfor %}
+        <p><label>Tài khoản: </label>{{form.username}} </p>
+        <p><label>Mật khẩu: </label>{{form.password}} </p>
+        {% comment %}
+        <input type="hidden" name="next" value="{{next}}" /> 
+        chỉ dùng được "{{next}}" khi có xác định sau khi login sẽ có destination, VD: views.py>onEmail()
+        {% endcomment %}
+        <input type="hidden" name="next" value="/" /> <!-- KO dùng được "{{next}}" vì KO có destination -->
+        <input type="submit" value="Đăng nhập" />
+    </form>
+</body>
+
+</html>
