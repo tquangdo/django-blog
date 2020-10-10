@@ -26,7 +26,7 @@ SECRET_KEY = 'xxx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # xử lí 404!!!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = []
 
 # Application definition

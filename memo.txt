@@ -78,3 +78,25 @@ localhost:8000/contact/
 localhost:8000/logout/
 localhost:8000/login(register)/
 4/ localhost:8000/blog-dotq/add-post/
+
+E) Host trên "pythonanywhere"
+1/ <Dashboard> > $ Bash
+git clone https://github.com/tquangdo/django-blog
+mkvirtualenv --python=/usr/bin/python3.8 myenvxxx
+pip install django
+2/ <Web> > Add a new web app > Manual configuraion > Python 3.8
+3/ Virtualenv: /home/trangia61/.virtualenvs/myenvxxx (refer 1/)
+4/ click: /var/www/trangia61_pythonanywhere_com_wsgi.py
+5/ xóa all "Hello work" + gỡ cmt out "Django", sửa:
+path = '/home/trangia61/django-blog' (refer 1/)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'PythonWeb.settings'
+6/ Static files: URL=/static/ & Directory=/home/trangia61/django-blog/StaticRoot
+7/ <Files> > click: /home/trangia61/django-blog/PythonWeb/settings.py, sửa:
+DEBUG = False
+ALLOWED_HOSTS = ['trangia61.pythonanywhere.com']
+8/ <Dashboard> > $ Bash
+cd django-blog/
+python manage.py migrate
+python -m pip install Pillow
+python manage.py migrate
+python manage.py createsuperuser
