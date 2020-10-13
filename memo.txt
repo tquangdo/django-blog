@@ -48,6 +48,8 @@ C) CMD
 >>> b.save()
 * SEL:
 >>> b.title/body...
+* DEL:
+>>> Post.objects.all().delete()
 * UPD:
 >>> a = Post.objects.get(id=1)
 >>> a.body = 'Hello Kteam'
