@@ -1,5 +1,8 @@
 A) CÀI
 1/ cài python
+https://docs.djangoproject.com/en
+Installation > complete installation guide > How to install Django on Windows
+https://www.python.org/downloads/
 2/ check version
 py --version
 -> 3.8.5
