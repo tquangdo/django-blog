@@ -39,11 +39,15 @@ deploy project lên server
 
 C) CMD
 1/ python manage.py startapp blog_dotq
+
 2/ python manage.py makemigrations blog_dotq
 -> tạo file migration "0001_initial.py" có các columns định nghĩa trong "models.py"
+
 3/ python manage.py migrate
 -> edit file "db.sqlite3" có text "CREATE TABLE blog_dotq_post" (tablename=<startapp>_<classname> định nghĩa trong "models.py": class "Post")
+
 4/ python manage.py test home_dotq (file "tests.py")
+
 5/ python manage.py shell
 >>> from blog_dotq.models import Post
 * INS:
@@ -64,6 +68,32 @@ C) CMD
 >>> b = a.comment_set.all() 
 + xong rồi thì:
 >>> b[0].body
+
+5-1. Phân biệt 2 loại objects.all():
+A) >>> Tweet.objects.all()
+<QuerySet [<Tweet: 2>, <Tweet: 0>]>
+B) >>> from django.contrib.auth import get_user_model
+>>> UserVar = get_user_model()
+>>> UserVar.objects.all()
+<QuerySet [<User: trangia61>]>
+
+5-2. CHÚ Ý DELETE() !!!!
+>>> obj = Tweet.objects.first()
+>>> obj.likes.all()
+<QuerySet [<User: trangia61>, <User: trangia61>, <User: trangia61>]>
+>>> obj.likes.all().delete() -> delete ráo trọi: user & tweets & likes!!!
+(14, {'admin.LogEntry': 2, 'auth.User_groups': 0, 'auth.User_user_permissions': 0, 'tweets.TweetLike': 3, 'tweets.Tweet': 8, 'auth.User': 1})
+>>> obj.likes.all()
+<QuerySet []>
+>>> obj.likes.add(me) -> báo ERR vì đã delete ráo trọi!!! -> khi đã ERR thì exit shell rồi vô lại chạy cmt lại từ đầu!
+
+5-3. models.py: "through=TweetLike"
+>>> from tweets.models import TweetLike
+>>> TweetLike.objects.all()
+<QuerySet [<TweetLike: TweetLike object (5)>]> -> (5) là id=5 chứ ko phải array's length!
+>>> TweetLike.objects.first() 
+<TweetLike: TweetLike object (5)>
+
 6/ python manage.py createsuperuser
 ID/PW:
 1/ trangia61/<pw giống gmail>
