@@ -14,12 +14,13 @@ project-name\Scripts\activate.bat
 -> (project-name) F:\DoTQ\DoTQPrivate\src\Python>
 (
 nếu báo lỗi "django" thì 
-(project-name) F:\...>python -m pip install Django
+(project-name) F:\...>python -m pip install django djangorestframework pipenv
 )
+
+> pipenv install
 =================== CMD
 5/ cài Django
-py -m pip install Django
-(py -m pip install djangorestframework)
+py -m pip install django
 6/ check version
 django-admin --version
 (py -m pip freeze)
