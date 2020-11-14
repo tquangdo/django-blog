@@ -12,6 +12,10 @@ py -m venv project-name
 4/ activate: mỗi lần mở mới CMD thì phải chạy lại "activate.bat"
 project-name\Scripts\activate.bat
 -> (project-name) F:\DoTQ\DoTQPrivate\src\Python>
+(
+nếu báo lỗi "django" thì 
+(project-name) F:\...>python -m pip install Django
+)
 =================== CMD
 5/ cài Django
 py -m pip install Django
